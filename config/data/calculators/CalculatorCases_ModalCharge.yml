@@ -1,0 +1,67 @@
+ModalSemiAnnualEqual:
+  base:
+    annual_premium: 1000
+    payment_mode_select: Semi-Annual
+    payment_amount: 500
+  results:
+    base:
+      result_annual_premium: '1,000'
+      result_payment_mode_select: Semi-Annual
+      result_payment_amount: '500'
+      result_apr: '0.00%'
+      result_charge: '$0'
+      result_premium: '$1,000'
+ModalQuarterlyDeficit:
+  base:
+    annual_premium: 1000
+    payment_mode_select: Quarterly
+    payment_amount: 200
+  results:
+    base:
+      result_annual_premium: '1,000'
+      result_payment_mode_select: Quarterly
+      result_payment_amount: '200'
+      result_apr: '-52.17%'
+      result_charge: '$-200'
+      result_premium: '$1,000'
+ModalQuarterlyEqual:
+  base:
+    annual_premium: 1000
+    payment_mode_select: Quarterly
+    payment_amount: 250
+  results:
+    base:
+      result_annual_premium: '1,000'
+      result_payment_mode_select: Quarterly
+      result_payment_amount: '250'
+      result_apr: '0.00%'
+      result_charge: '$0'
+      result_premium: '$1,000'
+ModalQuarterlyOverpayment:
+  base:
+    annual_premium: 1000
+    payment_mode_select: Quarterly
+    payment_amount: 300
+  results:
+    base:
+      result_annual_premium: '1,000'
+      result_payment_mode_select: Quarterly
+      result_payment_amount: '300'
+      result_apr: '54.55%'
+      result_charge: '$200'
+      result_premium: '$1,000'
+disclosure:
+  0: "Please Read This Information Carefully"
+  1: "As a policyholder of MassMutual, you have the right to choose among four payment plan options for paying your annual premium. Each payment option, other than annual, costs more money. Among our policyholders, the additional cost varies depending upon the type of policy and its original issue date. A generic description of the payment options and range of costs, expressed as dollars and as annual percentage rates, is described below."
+  2: "Premium Payment Options"
+  3: "You may pay premiums once a year (annually), twice a year (semi-annually), four times a year (quarterly), or twelve times a year (monthly)."
+  4: "If you pay your annual premium by installments, there will be an additional charge:"
+  5: "If you pay semi-annually, the additional charge equals an annual percentage rate (APR) in the range of 8.2% to 18%. This would amount to an additional annual charge in the range of $20 to $43 on an annual premium of $1,000.\nIf you pay quarterly, the additional charge equals an annual percentage rate (APR) in the range of 2.4% to 23.7%. This would amount to an additional annual charge in the range of $9 to $88 on an annual premium of $1,000.\nIf you pay monthly, the additional charge equals an annual percentage rate (APR) in the range of 4.3% to 22.1%. This would amount to an additional annual charge in the range of $20 to $103 on an annual premium of $1,000."
+  6: "There may be other premium payment options available on certain products. Please contact MassMutual at 1 (800) 272-2216 for more information."
+  7: "If you would like to know the exact dollar amount of the additional charge or the Annual Percentage Rate you are paying because you pay your annual premium in installments, you may access our \"Modal Charge Disclosure and Annual Percentage Calculator\" online and follow the simple instructions. Alternatively, you may call this toll free number 1 (800) 272-2216 and we will provide you with the information."
+  8: "How to Change Your Premium Payment Option*"
+  9: "You also have the right to change this option during the lifetime of your policy. In order to make a change, you must either:"
+  10: "Inform your MassMutual agent that you wish to change the premium payment frequency for your policy: or\nNotify MassMutual in writing via regular mail (MassMutual Financial Group Customer Service Hub at 1295 State Street, Springfield, MA 01111-0001) that you wish to change the premium payment frequency for your policy's premiums. Be sure to include in the letter the policy number for which you wish to change the premium payment frequency; or\nContact a MassMutual Customer Service Representative at 1 (800) 272-2216 and inform the representative that you wish to change the premium payment frequency for your policy."
+  11: "* If your premium is paid through a payroll deduction, there may be limitations on your ability to change the payment option. Contact your MassMutual agent to determine if your premium payment option can be changed."
+  12: "This notice does not change any of the terms of your MassMutual policy."
+  13: "Insurance products issued by Massachusetts Mutual Life Insurance Company (MassMutual), 1295 State Street, Springfield, MA 01111-0001 and its subsidiaries C.M. Life Insurance Company and MML Bay State Life Insurance Company, 100 Bright Meadow Boulevard, Enfield, CT 06082."

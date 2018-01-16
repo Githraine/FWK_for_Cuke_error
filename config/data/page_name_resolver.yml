@@ -1,0 +1,36 @@
+Retirement Calculator:
+  name: Retirement Planner Calculator
+  page_object: RetirementCalculatorPage
+  yml_file: calculators/CalculatorCases_Retirement.yml
+College Calculator:
+  name: College Calculator
+  page_object: CollegeCalculatorPage
+  yml_file: calculators/CalculatorCases_College.yml
+Life Insurance Calculator:
+  name: Life Insurance Planner Calculator
+  page_object: LifeInsuranceCalculatorPage
+  yml_file: calculators/CalculatorCases_LifeInsurance.yml
+Modal Charge Calculator:
+  name: Modal Charge Calculator
+  page_object: ModalChargeCalculatorPage
+  yml_file: calculators/CalculatorCases_ModalCharge.yml
+Disability Calculator:
+  name: Disability Insurance Planner Calculator
+  page_object: DisabilityCalculatorPage
+  yml_file: calculators/CalculatorCases_Disability.yml
+Social Security Quiz:
+  name: Social Security Quiz
+  page_object: SocialSecurityPage
+  yml_file: calculators/CalculatorCases_SocialSecurity.yml
+Disability Quiz:
+  name: Disability Quiz
+  page_object: DisabilityQuizPage
+  yml_file: calculators/CalculatorCases_Disability_Quiz.yml
+Guest Payments Page:
+  name: Guest Payments
+  page_object: GuestPaymentsPage
+  yml_file: guest_payments.yml
+Payment Hub Page:
+  name: Payment Hub
+  page_object: PaymentHubPage
+  yml_file: payment_hub.yml

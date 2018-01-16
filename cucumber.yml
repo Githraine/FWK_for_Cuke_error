@@ -1,0 +1,158 @@
+<% machine_name = ENV['COMPUTERNAME'] %>
+<% test_date = Time.now.getutc.strftime('%Y%m%d') %>
+<% test_time = Time.now.getutc.strftime('%H%M%S') %>
+<% random_id = "%06d" % (rand * 999999).round %>
+<% run_id = "#{test_date}_#{test_time}UTC_#{random_id}" %>
+<% output_file = "#{ENV['BUILD_NUMBER']}/results_#{random_id}.json" %>
+#{machine_name}_  #--format PrettyFace::Formatter::Html  #--format json
+
+<% base_args = " --no-source --color --format json --tags not @nyi --tags not @ignore --tags not @test --tags not @eyes" %>
+<% base_args_eyes = " --no-source --color --format json --tags not @nyi --tags not @ignore --tags not @test --tags @eyes" %>
+<% args_smoke = "--tags @smoke " %>
+<% args_xbrowser = "--tags @xbrowser " %>
+<% args_perf = " --tags @perf " %>
+<% args_calc = " --tags @mm_calc " %>
+<% args_spyder = " --tags @mm_spyder " %>
+<% args_cssp = " --tags @mm_cssp " %>
+<% args_institutional = " --tags @mm_cms_institutional " %>
+<% args_dashboard = " --tags @mm_dash " %>
+<% args_agency = " --tags @mm_agency " %>
+<% args_blog = " --tags @mm_cms_blog " %>
+<% args_reglog = " --tags @mm_reglog " %>
+<% args_search = " --tags @mm_cms_global_search " %>
+<% args_no_reglog = " --tags not @mm_reglog " %>
+<% args_calc_dev = " --tags not @nav " %>
+<% args_all = " --tags not @mm_spyder " %>
+<% no_mobile = " --tags not @mm_no_mobile " %>
+<% no_dev_only = " --tags not @dev_only " %>
+<% args_billing_and_payments_qa = " --tags @mm_bp_viewbp " %>
+<% args_payment_hub = " --tags @mm_ph " %>
+<% args_global_template = " --tags @mm_cms_global_template " %>
+<% args_amc = " --tags @AMCR " %>
+<% args_guest_pay = " --tags @mm_gp " %>
+<% args_crawler = " --tags @mm_crawler " %>
+<% args_loan_pay = " --tags @mm_ph_ol " %>
+<% args_cms = " --tags @mm_cms " %>
+
+#@nyi = not yet implemented scenarios, @ignore = scenarios that should be ignored and can be previously implemented
+
+# Calc Special Dev Env
+calc_dev_smoke: FIG_NEWTON_FILE=calc_dev.yml <%= base_args %> <%= args_smoke %> <%=args_calc %> <%=args_calc_dev %> --out results/devsmoke/<%= output_file %>
+calc_dev_full: FIG_NEWTON_FILE=calc_dev.yml <%= base_args %> <%=args_calc %> <%=args_calc_dev %> --out results/dev_full/<%= output_file %>
+
+# ***** Dev *****
+dev_pc_smoke_all: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_smoke %> <%= args_all %> --out results/devsmoke/<%= output_file %>
+dev_pc_xbrowser_all: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_xbrowser %> <%= args_all %> --out results/devsmoke/<%= output_file %>
+dev_pc_smoke_calc: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_smoke %> <%=args_calc %> --out results/devsmoke/<%= output_file %>
+dev_pc_smoke_cssp: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_smoke %> <%=args_cssp %> --out results/devsmoke/<%= output_file %>
+dev_pc_smoke_inst: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_smoke %> <%=args_institutional %> --out results/devsmoke/<%= output_file %>
+dev_pc_smoke_dashboard: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_smoke %> <%=args_dashboard %> --out results/devsmoke/<%= output_file %>
+dev_pc_smoke_reglog: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_smoke %> <%=args_reglog %> --out results/devsmoke/<%= output_file %>
+dev_pc_smoke_agency: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_smoke %> <%=args_agency %> --out results/devsmoke/<%= output_file %>
+dev_ph_smoke: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_smoke %> <%= args_payment_hub %> --out results/devsmoke/<%= output_file %>
+dev_gp_smoke: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_smoke %> <%= args_guest_pay %> --out results/devsmoke/<%= output_file %>
+dev_lp_smoke: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_smoke %> <%= args_loan_pay %> --out results/devsmoke/<%= output_file %>
+
+dev_pc_full_all: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= args_all %> --out results/dev_full/<%= output_file %>
+dev_pc_full_mobile: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%= no_mobile %> <%= no_dev_only %> <%= args_all %> <%= args_no_reglog %> --out results/qa_full/<%= output_file %>
+dev_pc_full_eyes: FIG_NEWTON_FILE=dev_PC.yml <%= base_args_eyes %> --out results/dev_full/<%= output_file %>
+dev_pc_full_calc: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%=args_calc %> --out results/dev_full/<%= output_file %>
+dev_pc_full_inst: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%=args_institutional %> --out results/dev_full/<%= output_file %>
+dev_pc_full_reglog: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%=args_reglog %> --out results/dev_full/<%= output_file %>
+dev_pc_full_dashboard: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%=args_dashboard %> --out results/dev_full/<%= output_file %>
+dev_pc_full_agency: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%=args_agency %> --out results/dev_full/<%= output_file %>
+dev_pc_full_blog: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%=args_blog %> --out results/dev_full/<%= output_file %>
+dev_pc_full_global_template: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%=args_global_template %> --out results/dev_full/<%= output_file %>
+dev_pc_full_payment_hub: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%=args_payment_hub %> --out results/dev_full/<%= output_file %>
+dev_pc_full_guest_pay: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%=args_guest_pay %> --out results/dev_full/<%= output_file %>
+dev_pc_full_amc: FIG_NEWTON_FILE=dev_PC.yml <%= base_args %> <%=args_amc %> --out results/dev_full/<%= output_file %>
+
+# ***** QA *****
+qa_pc_smoke_all: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%= args_all %> --out results/qasmoke/<%= output_file %>
+qa_pc_xbrowser_all: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_xbrowser %> <%= args_all %> --out results/qasmoke/<%= output_file %>
+# Billing And Payment Smoke
+qa_bp_smoke: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_billing_and_payments_qa %> --out results/qasmoke/<%= output_file %>
+qa_ph_smoke: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> % no_dev_only %> <%= args_smoke %> <%= args_payment_hub %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_calc: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_calc %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_cssp: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_cssp %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_inst: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_institutional %> <%=args_cssp %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_dashboard: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_dashboard %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_reglog: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_reglog %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_agency: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_agency %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_search: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_search %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_blog: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_blog %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_global_template: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_global_template %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_guest_pay: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_guest_pay %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_loan_pay: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_loan_pay %> --out results/qasmoke/<%= output_file %>
+qa_pc_smoke_cms: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_cms %> --out results/qasmoke/<%= output_file %>
+
+qa_pc_full_all: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_all %> <%= args_no_reglog %> --out results/qa_full/<%= output_file %>
+qa_pc_full_mobile: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_mobile %> <%= no_dev_only %> <%= args_all %> <%= args_no_reglog %> --out results/qa_full/<%= output_file %>
+qa_pc_full_eyes: FIG_NEWTON_FILE=qa_PC.yml <%= base_args_eyes %> <%= no_dev_only %> <%= args_no_reglog %> --out results/qa_full/<%= output_file %>
+qa_pc_full_calc: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_calc %> --out results/qa_full/<%= output_file %>
+qa_pc_full_inst: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_institutional %> --out results/qa_full/<%= output_file %>
+qa_pc_full_reglog: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_reglog %> --out results/qa_full/<%= output_file %>
+qa_pc_full_dashboard: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_dashboard %> --out results/qa_full/<%= output_file %>
+qa_pc_full_agency: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_agency %> --out results/qa_full/<%= output_file %>
+qa_pc_full_blog: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_blog %> --out results/qa_full/<%= output_file %>
+qa_pc_full_payment_hub: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_payment_hub %> --out results/qa_full/<%= output_file %>
+qa_pc_full_search: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_search %> --out results/qa_full/<%= output_file %>
+qa_pc_full_global_template: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_global_template %> --out results/qa_full/<%= output_file %>
+qa_pc_full_amc: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%=args_amc %> --out results/qa_full/<%= output_file %>
+qa_device_full: FIG_NEWTON_FILE=qa_device.yml <%= base_args %> <%= no_dev_only %> --out results/qa_full/<%= output_file %>
+qa_pc_full_guest_pay: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_guest_pay %> --out results/qa_full/<%= output_file %>
+qa_pc_full_loan_pay: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_loan_pay %> --out results/qa_full/<%= output_file %>
+qa_full_crawler: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_crawler %> --out results/qa_full/<%= output_file %>
+qa_pc_full_cms: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_cms %> --out results/qa_full/<%= output_file %>
+
+# ***** Prev *****
+prev_smoke_calc: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%= args_calc %> --out results/prevsmoke/<%= output_file %>
+prev_xbrowser_full: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_xbrowser %> --out results/prevsmoke/<%= output_file %>
+prev_pc_smoke_agency: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_agency %> --out results/prevsmoke/<%= output_file %>
+prev_pc_smoke_reglog: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_reglog %> --tags @prod --out results/prevsmoke/<%= output_file %>
+prev_pc_smoke_search: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_search %> --out results/prevsmoke/<%= output_file %>
+prev_pc_smoke_cms: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%= args_cms %> --out results/prevsmoke/<%= output_file %>
+
+prev_full_calc: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_calc %> --out results/prev_full/<%= output_file %>
+prev_full_eyes: FIG_NEWTON_FILE=prev_PC.yml <%= base_args_eyes %> <%= no_dev_only %> --out results/prev_full/<%= output_file %>
+prev_pc_full_inst: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_institutional %> --out results/prev_full/<%= output_file %>
+prev_pc_full_agency: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_agency %> --out results/prev_full/<%= output_file %>
+prev_pc_full_blog: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_blog %> --out results/prev_full/<%= output_file %>
+prev_pc_full_global_template: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_global_template %> --out results/prev_full/<%= output_file %>
+prev_pc_full_cms: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_cms %> --out results/prev_full/<%= output_file %>
+
+# ***** Prod *****
+prod_smoke_calc: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%= args_calc %> --out results/prodsmoke/<%= output_file %>
+prod_xbrowser_full: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_xbrowser %> --out results/prodsmoke/<%= output_file %>
+prod_pc_smoke_agency: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_agency %> --out results/prodsmoke/<%= output_file %>
+prod_pc_smoke_reglog: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_reglog %> --tags @prod --out results/prodsmoke/<%= output_file %>
+prod_pc_smoke_search: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_search %> --out results/prodsmoke/<%= output_file %>
+prod_pc_smoke_cms: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%=args_cms %> --out results/prodsmoke/<%= output_file %>
+prod_pc_smoke_blog: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%= args_blog %> --out results/prodsmoke/<%= output_file %>
+prod_pc_smoke_global_template: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_smoke %> <%= args_global_template %> --out results/prodsmoke/<%= output_file %>
+
+prod_full_calc: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_calc %> --out results/prod_full/<%= output_file %>
+prod_full_eyes: FIG_NEWTON_FILE=prod_PC.yml <%= base_args_eyes %> <%= no_dev_only %> --out results/prod_full/<%= output_file %>
+prod_pc_full_agency: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%=args_agency %> --out results/prod_full/<%= output_file %>
+prod_pc_full_inst: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_institutional %> --out results/prod_full/<%= output_file %>
+prod_pc_full_blog: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_blog %> --out results/prod_full/<%= output_file %>
+prod_pc_full_global_template: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_global_template %> --out results/prod_full/<%= output_file %>
+prod_pc_full_cms: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_cms %> --out results/prod_full/<%= output_file %>
+
+prod_full_crawler: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> <%= no_dev_only %> <%= args_crawler %> --out results/prod_full/<%= output_file %>
+
+# ***** Spyders *****
+qa_spyders_page: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> --tags @qa --tags @page <%=args_spyder %> --out results/qasmoke/<%= output_file %>
+qa_spyders_cache: FIG_NEWTON_FILE=qa_PC.yml <%= base_args %> --tags @qa --tags @cache <%=args_spyder %> --out results/qasmoke/<%= output_file %>
+
+prod_spyders_page: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> --tags @prod --tags @page <%=args_spyder %> --out results/prodsmoke/<%= output_file %>
+prod_spyders_cache: FIG_NEWTON_FILE=prod_PC.yml <%= base_args %> --tags @prod --tags @cache <%=args_spyder %> --out results/prodsmoke/<%= output_file %>
+
+prev_spyders_page: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> --tags @prev --tags @page <%=args_spyder %> --out results/prevsmoke/<%= output_file %>
+prev_spyders_cache: FIG_NEWTON_FILE=prev_PC.yml <%= base_args %> --tags @prev --tags @cache <%=args_spyder %> --out results/prevsmoke/<%= output_file %>
+
+# ***** Local *****
+local_smoke_all: FIG_NEWTON_FILE=local.yml <%= base_args %> <%= args_smoke %> <%= args_calc_dev %> <%= args_all %> --out results/local_smoke/<%= output_file %>
+local_smoke_calc: FIG_NEWTON_FILE=local.yml <%= base_args %> <%= args_smoke %> <%= args_calc_dev %> <%=args_calc %> --out results/local_smoke/<%= output_file %>
+local_full_all: FIG_NEWTON_FILE=local.yml <%= base_args %> <%= args_calc_dev %> <%= args_all %> --out results/local_full/<%= output_file %>
+local_full_calc: FIG_NEWTON_FILE=local.yml <%= base_args %> <%= args_calc_dev %> <%=args_calc %> --out results/local_full/<%= output_file %>

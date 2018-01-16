@@ -1,0 +1,12 @@
+base_url: https://www.massmutual.com/
+base_url_advisors: https://advisors.massmutual.com/
+base_url_blog: https://blog.massmutual.com/
+institutional_url: https://institutional.massmutual.com/
+
+data_store:
+env: Prod
+full_env: Prod_PC
+mode: PC
+application: MassMutual.com
+service_host_loc: ''
+auth_seed: ''

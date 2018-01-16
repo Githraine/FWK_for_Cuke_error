@@ -1,0 +1,27 @@
+#resolutions are in Viewport Sizes.
+#Comment has the actual Resolution
+#See http://resizemybrowser.com/ to do the math
+PC_Large:
+#1920x1080
+  x: 1900
+  y: 920
+PC_Medium:
+#1300x800
+  x: 1300
+  y: 704
+PC_Small:
+#900x550 - Airbook
+  x: 900
+  y: 500
+Mobile_Portrait_Small:
+#480x800 HTC, other small older phones
+  x: 480
+  y: 700
+Mobile_Portrait_Large:
+#1080x1920 - iPhone7+ / Galaxy S6 - Smaller Y axis compare works on scroll
+  x: 1080
+  y: 900
+Mobile_Portrait_Medium:
+#750x1334 #iPhone7  - Smaller Y axis compare works on scroll
+  x: 750
+  y: 900
